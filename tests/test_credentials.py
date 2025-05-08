@@ -3,13 +3,13 @@ from unittest.mock import MagicMock
 import pytest
 from azure.storage.blob import BlobClient, BlobServiceClient, ContainerClient
 from conftest import CosmosClientMock
+from prefect import flow
+
 from prefect_azure.credentials import (
     AzureBlobStorageCredentials,
     AzureCosmosDbCredentials,
     AzureMlCredentials,
 )
-
-from prefect import flow
 
 
 def test_get_service_client(blob_connection_string):

@@ -4,14 +4,14 @@ from pathlib import Path
 
 import pytest
 from azure.core.exceptions import ResourceExistsError
+from prefect import flow
+
 from prefect_azure.blob_storage import (
     AzureBlobStorageContainer,
     blob_storage_download,
     blob_storage_list,
     blob_storage_upload,
 )
-
-from prefect import flow
 
 
 async def test_blob_storage_download_flow(blob_storage_credentials):

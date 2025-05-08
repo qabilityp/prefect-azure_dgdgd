@@ -76,6 +76,7 @@ from typing import Any, Dict, List, Optional, Union
 
 import anyio
 import dateutil.parser
+import prefect
 from azure.core.exceptions import HttpResponseError, ResourceNotFoundError
 from azure.core.polling import LROPoller
 from azure.mgmt.containerinstance import ContainerInstanceManagementClient
@@ -87,9 +88,6 @@ from azure.mgmt.resource.resources.models import (
     DeploymentMode,
     DeploymentProperties,
 )
-from pydantic import VERSION as PYDANTIC_VERSION
-
-import prefect
 from prefect import get_client
 from prefect.client.schemas import FlowRun
 from prefect.exceptions import InfrastructureNotAvailable, InfrastructureNotFound
@@ -103,6 +101,7 @@ from prefect.workers.base import (
     BaseWorker,
     BaseWorkerResult,
 )
+from pydantic import VERSION as PYDANTIC_VERSION
 
 if PYDANTIC_VERSION.startswith("2."):
     from pydantic.v1 import Field, SecretStr

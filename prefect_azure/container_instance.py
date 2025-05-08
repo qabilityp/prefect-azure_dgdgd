@@ -76,6 +76,7 @@ from typing import Dict, List, Optional, Union
 
 import anyio
 import dateutil.parser
+import prefect.infrastructure.container
 from anyio.abc import TaskStatus
 from azure.core.exceptions import HttpResponseError, ResourceNotFoundError
 from azure.core.polling import LROPoller
@@ -96,14 +97,12 @@ from azure.mgmt.containerinstance.models import (
     ResourceRequirements,
     UserAssignedIdentities,
 )
-from pydantic import VERSION as PYDANTIC_VERSION
-
-import prefect.infrastructure.container
 from prefect.blocks.core import BlockNotSavedError
 from prefect.exceptions import InfrastructureNotAvailable, InfrastructureNotFound
 from prefect.infrastructure.base import Infrastructure, InfrastructureResult
 from prefect.utilities.asyncutils import run_sync_in_worker_thread, sync_compatible
 from prefect.utilities.dockerutils import get_prefect_image_name
+from pydantic import VERSION as PYDANTIC_VERSION
 
 if PYDANTIC_VERSION.startswith("2."):
     from pydantic.v1 import BaseModel, Field, SecretStr

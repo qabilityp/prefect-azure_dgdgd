@@ -38,7 +38,6 @@ from typing import Dict, Optional
 
 from azure.identity import DefaultAzureCredential
 from azure.storage.blob import ContainerClient
-
 from prefect.utilities.filesystem import filter_files, relative_path_to_current_platform
 
 

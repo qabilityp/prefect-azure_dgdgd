@@ -1,10 +1,10 @@
+from prefect import flow
+
 from prefect_azure.cosmos_db import (
     cosmos_db_create_item,
     cosmos_db_query_items,
     cosmos_db_read_item,
 )
-
-from prefect import flow
 
 
 async def test_cosmos_db_query_items_flow(cosmos_db_credentials):

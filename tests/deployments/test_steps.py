@@ -5,6 +5,7 @@ from unittest.mock import ANY, MagicMock, call
 import pytest
 from azure.identity import DefaultAzureCredential
 from azure.storage.blob import ContainerClient
+
 from prefect_azure.deployments.steps import (
     pull_from_azure_blob_storage,
     push_to_azure_blob_storage,
@@ -455,7 +456,9 @@ class TestPull:
         assert expected_file.exists()
 
     @pytest.mark.usefixtures("mock_azure_blob_storage")
-    def test_pull_from_azure_blob_storage_skip_folders(self, tmp_path, container_client_mock):
+    def test_pull_from_azure_blob_storage_skip_folders(
+        self, tmp_path, container_client_mock
+    ):
         container = "test-container"
         folder = "test-folder"
         credentials = {"connection_string": "fake_connection_string"}

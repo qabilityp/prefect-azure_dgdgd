@@ -7,7 +7,6 @@ from pathlib import Path
 from textwrap import dedent
 
 import mkdocs_gen_files
-
 from prefect.blocks.core import Block
 from prefect.utilities.dispatch import get_registry_for_type
 from prefect.utilities.importtools import to_qualified_name
