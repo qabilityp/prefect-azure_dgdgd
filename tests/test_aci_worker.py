@@ -9,6 +9,8 @@ from anyio.abc import TaskStatus
 from azure.core.exceptions import HttpResponseError, ResourceNotFoundError
 from azure.identity import ClientSecretCredential
 from azure.mgmt.resource import ResourceManagementClient
+from pydantic import VERSION as PYDANTIC_VERSION
+
 from prefect.client.schemas import FlowRun
 from prefect.exceptions import InfrastructureNotFound
 from prefect.infrastructure.container import DockerRegistry
@@ -16,7 +18,6 @@ from prefect.server.schemas.core import Flow
 from prefect.settings import get_current_settings
 from prefect.testing.utilities import AsyncMock
 from prefect.utilities.dockerutils import get_prefect_image_name
-from pydantic import VERSION as PYDANTIC_VERSION
 
 if PYDANTIC_VERSION.startswith("2."):
     from pydantic.v1 import SecretStr
@@ -26,9 +27,9 @@ else:
 import prefect_azure.container_instance
 from prefect_azure import AzureContainerInstanceCredentials
 from prefect_azure.container_instance import ACRManagedIdentity
-from prefect_azure.workers.container_instance import AzureContainerVariables  # noqa
 from prefect_azure.workers.container_instance import (
     AzureContainerJobConfiguration,
+    AzureContainerVariables,  # noqa
     AzureContainerWorker,
     AzureContainerWorkerResult,
     ContainerGroupProvisioningState,
@@ -955,7 +956,7 @@ def test_job_configuration_creation():
     assert config.aci_credentials.tenant_id == "my-tenant-id"
     assert config.aci_credentials.client_id == "my-client-id"
     assert config.aci_credentials.client_secret.get_secret_value() == "my-client-secret"
-    assert type(config.arm_template) == dict
+    assert isinstance(config.arm_template, dict)
 
 
 async def test_image_populated_in_template_when_not_provided(worker_flow_run):

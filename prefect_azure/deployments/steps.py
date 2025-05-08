@@ -38,6 +38,7 @@ from typing import Dict, Optional
 
 from azure.identity import DefaultAzureCredential
 from azure.storage.blob import ContainerClient
+
 from prefect.utilities.filesystem import filter_files, relative_path_to_current_platform
 
 
@@ -187,6 +188,9 @@ def pull_from_azure_blob_storage(
 
     with container_client as client:
         for blob in client.list_blobs(name_starts_with=folder):
+            if blob.name.endswith("/"):
+                continue
+
             target = PurePosixPath(
                 local_path
                 / relative_path_to_current_platform(blob.name).relative_to(folder)

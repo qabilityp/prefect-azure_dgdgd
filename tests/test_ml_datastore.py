@@ -1,11 +1,11 @@
-from prefect import flow
-
 from prefect_azure.ml_datastore import (
     ml_get_datastore,
     ml_list_datastores,
     ml_register_datastore_blob_container,
     ml_upload_datastore,
 )
+
+from prefect import flow
 
 
 def test_ml_list_datastores_flow(ml_credentials):

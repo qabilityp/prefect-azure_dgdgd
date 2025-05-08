@@ -10,7 +10,6 @@ if TYPE_CHECKING:
 
 from prefect import task
 from prefect.logging import get_run_logger
-
 from prefect_azure.credentials import AzureCosmosDbCredentials
 
 

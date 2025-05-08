@@ -15,12 +15,12 @@ from azure.mgmt.containerinstance.models import (
     UserAssignedIdentities,
 )
 from azure.mgmt.resource import ResourceManagementClient
+from prefect_azure.workers.container_instance import AzureContainerWorker
+from pydantic import VERSION as PYDANTIC_VERSION
+
 from prefect.exceptions import InfrastructureNotAvailable, InfrastructureNotFound
 from prefect.infrastructure.container import DockerRegistry
 from prefect.settings import get_current_settings
-from pydantic import VERSION as PYDANTIC_VERSION
-
-from prefect_azure.workers.container_instance import AzureContainerWorker
 
 if PYDANTIC_VERSION.startswith("2."):
     from pydantic.v1 import SecretStr
